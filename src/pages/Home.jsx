@@ -87,20 +87,21 @@ const Home = () => {
             <Banner />
 
             {/* Search & Filter */}
-            <div className="m-6 bg-gray-100 p-4 flex justify-center items-center gap-2">
+            <div className="m-6 bg-gray-100 p-4 flex flex-col md:flex-row justify-center items-center gap-2">
                 {/* Category */}
                 <div className="dropdown dropdown-hover">
                     <div tabIndex={0} role="button" className="btn bg-white m-1">Category</div>
                     <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
                         <li><a onClick={() => categoryFilter('tshirt')}>Tshirts</a></li>
                         <li><a onClick={() => categoryFilter('jeans & pants')}>Jeans & Pants</a></li>
+                        <li><a onClick={() => categoryFilter('shorts')}>Shorts</a></li>
                         <li><a onClick={() => categoryFilter('sneakers')}>Sneakers</a></li>
                         <li><a onClick={() => categoryFilter('hoodie & jackets')}>Hoodie & Jackets</a></li>
                         <li><a onClick={() => brandFilter('Adidas')}>Adidas</a></li>
                         <li><a onClick={() => brandFilter('Nike')}>Nike</a></li>
                         <li><a onClick={() => brandFilter('Puma')}>Puma</a></li>
                         <li><a onClick={() => brandFilter('Fabrilife')}>Fabrilife</a></li>
-                        <li><a onClick={() => brandFilter('Deshal')}>Other Brands</a></li>
+                        <li><a onClick={() => brandFilter('Deshal')}>Deshal</a></li>
                         <li><a onClick={() => setFilteredProducts(products)}>All</a></li>
                         <li><a onClick={() => priceFilter(500)}>Price: Below 500</a></li>
                         <li><a onClick={() => priceFilter(1000)}>Price: Below 1000</a></li>
@@ -126,7 +127,7 @@ const Home = () => {
                         type="text"
                         placeholder="Search"
                         onChange={(e) => searchFilter(e.target.value)}
-                        className="w-64" />
+                        className="md:w-64" />
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 16 16"
@@ -141,14 +142,14 @@ const Home = () => {
             </div>
 
             {/* Products */}
-            <div className="max-w-screen-xl mx-auto md:grid grid-cols-3 gap-4">
+            <div className="md:max-w-screen-xl mx-auto md:grid grid-cols-3 gap-4">
                 {
                     currentProducts.map(product => <ProductCard key={product.id} product={product}></ProductCard>)
                 }
             </div>
 
             {/* Pagination Controls */}
-            <div className="flex justify-center mt-6">
+            <div className="flex justify-center mt-6 mb-6">
                 <button 
                     onClick={handlePreviousPage}
                     disabled={currentPage === 1}
