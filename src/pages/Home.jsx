@@ -12,7 +12,7 @@ const Home = () => {
     const productsPerPage = 6; 
 
     useEffect(() => {
-        fetch("http://localhost:3000/products")
+        fetch("https://ul-server-plum.vercel.app/products")
             .then(res => res.json())
             .then(data => {
                 setProducts(data);

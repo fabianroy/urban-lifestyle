@@ -32,7 +32,7 @@ const router = createBrowserRouter([
       {
         path: '/product/:id',
         element: <ProductDetails></ProductDetails>,
-        loader: ({params}) => fetch(`http://localhost:3000/products/${params.id}`)
+        loader: ({params}) => fetch(`https://ul-server-plum.vercel.app/products/${params.id}`)
       }
     ]
   },
