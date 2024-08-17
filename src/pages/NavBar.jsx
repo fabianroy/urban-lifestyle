@@ -6,7 +6,7 @@ const NavBar = () => {
     return (
         <div className="navbar bg-base-100 pt-4 pb-4">
             <div className="flex-1">
-                <a className="btn btn-ghost text-xl">Urban Lifstyle</a>
+                <a className="btn btn-ghost md:text-2xl italic">Urban Lifstyle</a>
             </div>
             {
                 user ?

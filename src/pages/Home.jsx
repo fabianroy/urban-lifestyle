@@ -3,6 +3,9 @@ import Banner from "../components/Banner";
 import ProductCard from "../components/ProductCard";
 
 const Home = () => {
+
+    document.title = "Urban Lifestyle | Home";
+
     const [products, setProducts] = useState([]);
     const [filteredProducts, setFilteredProducts] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
