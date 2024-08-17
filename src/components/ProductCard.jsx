@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const ProductCard = ({product}) => {
 
@@ -19,7 +20,7 @@ const ProductCard = ({product}) => {
                 <p>Rating: {rating}</p>
                 <small>Date Added: {creation_date} </small>
                 <div className="card-actions justify-end">
-                    <button className="btn btn-primary">Details</button>
+                    <Link to={`/product/${product._id}`} className="btn bg-gray-800 text-white">View Details</Link>
                 </div>
             </div>
         </div>
