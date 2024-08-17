@@ -4,13 +4,12 @@ import { AuthContext } from "./../provider/AuthProvider";
 
 const Login = () => {
 
-    document.title = "Login";
+    document.title = "Urban Lifestyle | Login";
 
     const { signIn, signWithGoogle } = useContext(AuthContext);
 
     const navigate = useNavigate();
     const location = useLocation();
-
 
     const handleLogin = (e) => {
         e.preventDefault();

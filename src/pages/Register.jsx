@@ -4,7 +4,7 @@ import { AuthContext } from "../provider/AuthProvider";
 
 const Register = () => {
 
-    document.title = "Register";
+    document.title = "Urban Lifestyle | Register";
 
     const { createUser, signWithGoogle } = useContext(AuthContext);
 

@@ -1,9 +1,13 @@
 import { Link, useLoaderData } from "react-router-dom";
 
 const ProductDetails = () => {
+
+    document.title = "Urban Lifestyle | Details";
+
     const productInfo = useLoaderData();
     const {product_name, image_url, price, rating, brand, creation_date, description, category} = productInfo;
     console.log(productInfo);
+    
     return (
         <div className="w-fit mx-auto">
             <div className="card bg-base-100 m-6 md:m-0 md:w-96 shadow-xl">
