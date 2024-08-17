@@ -2,7 +2,7 @@ import React from 'react';
 
 const ProductCard = ({product}) => {
 
-    const {product_name, image_url, price, rating, brand} = product;
+    const {product_name, image_url, price, rating, brand, creation_date} = product;
 
     return (
         <div className="card bg-base-100 w-96 shadow-xl">
@@ -17,6 +17,7 @@ const ProductCard = ({product}) => {
                 <p className='font-bold'>{brand}</p>
                 <p>Price: BDT {price}.00</p>
                 <p>Rating: {rating}</p>
+                <small>Date Added: {creation_date} </small>
                 <div className="card-actions justify-end">
                     <button className="btn btn-primary">Details</button>
                 </div>

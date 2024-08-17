@@ -5,6 +5,8 @@ import ProductCard from "../components/ProductCard";
 const Home = () => {
     const [products, setProducts] = useState([]);
     const [filteredProducts, setFilteredProducts] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const productsPerPage = 6; 
 
     useEffect(() => {
         fetch("http://localhost:3000/products")
@@ -15,43 +17,49 @@ const Home = () => {
             });
     }, []);
 
+    // Pagination 
+    const indexOfLastProduct = currentPage * productsPerPage;
+    const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+    const currentProducts = filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct);
+
     // Update filteredProducts based on filters
     const applyFilters = (filterFunction) => {
         const result = filterFunction(products);
         setFilteredProducts(result);
+        setCurrentPage(1); // Reset to first page after applying a filter
     };
 
-    // category filter by category
+    // Category filter
     const categoryFilter = (category) => {
         applyFilters(products => products.filter(product => product.category === category));
     };
 
-    // category filter by brand
+    // Brand filter
     const brandFilter = (brand) => {
         applyFilters(products => products.filter(product => product.brand === brand));
     };
 
-    // category filter by price range
+    // Price filter
     const priceFilter = (price) => {
         applyFilters(products => products.filter(product => product.price <= price));
     };
 
-    // sort by price low to high
+    // Sort by price low to high
     const priceLowtoHigh = () => {
         applyFilters(products => [...products].sort((a, b) => a.price - b.price));
     };
 
-    // sort by price high to low
+    // Sort by price high to low
     const priceHightoLow = () => {
         applyFilters(products => [...products].sort((a, b) => b.price - a.price));
     };
 
-    // sort by newest arrivals by date
+    // Sort by newest arrivals
     const newestArrivals = () => {
-        applyFilters(products => [...products].sort((a, b) => new Date(b.date) - new Date(a.date)));
+        applyFilters(products => [...products].sort((a, b) => new Date(b.creation_date) - new Date(a.creation_date)));
     };
 
-    // search by product name, brand, category without case sensitivity and clicking search button
+    // Search filter
     const searchFilter = (search) => {
         applyFilters(products => products.filter(product => {
             return product.product_name.toLowerCase().includes(search.toLowerCase()) ||
@@ -60,10 +68,23 @@ const Home = () => {
         }));
     }
 
+    // Pagination handler
+    const handleNextPage = () => {
+        if (currentPage < Math.ceil(filteredProducts.length / productsPerPage)) {
+            setCurrentPage(currentPage + 1);
+        }
+    };
+
+    const handlePreviousPage = () => {
+        if (currentPage > 1) {
+            setCurrentPage(currentPage - 1);
+        }
+    };
+
     return (
         <div>
             {/* Banner */}
-            <Banner></Banner>
+            <Banner />
 
             {/* Search & Filter */}
             <div className="m-6 bg-gray-100 p-4 flex justify-center items-center gap-2">
@@ -96,7 +117,7 @@ const Home = () => {
                     <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
                         <li><a onClick={priceLowtoHigh}>Price: Low to High</a></li>
                         <li><a onClick={priceHightoLow}>Price: High to Low</a></li>
-                        <li><a onClick={newestArrivals}>Newest Arrivals</a></li>
+                        <li><a onClick={newestArrivals}>Newest First</a></li>
                     </ul>
                 </div>
                 {/* Search */}
@@ -122,10 +143,27 @@ const Home = () => {
             {/* Products */}
             <div className="max-w-screen-xl mx-auto md:grid grid-cols-3 gap-4">
                 {
-                    filteredProducts.map(product => <ProductCard key={product.id} product={product}></ProductCard>)
+                    currentProducts.map(product => <ProductCard key={product.id} product={product}></ProductCard>)
                 }
             </div>
 
+            {/* Pagination Controls */}
+            <div className="flex justify-center mt-6">
+                <button 
+                    onClick={handlePreviousPage}
+                    disabled={currentPage === 1}
+                    className="btn m-1"
+                >
+                    Previous
+                </button>
+                <button 
+                    onClick={handleNextPage}
+                    disabled={currentPage >= Math.ceil(filteredProducts.length / productsPerPage)}
+                    className="btn m-1"
+                >
+                    Next
+                </button>
+            </div>
         </div>
     );
 };
