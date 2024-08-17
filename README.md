@@ -1,8 +1,28 @@
-# React + Vite
+# Urban Lifestyles - Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Project Overview
 
-Currently, two official plugins are available:
+Urban Lifestyles is an e-commerce platform designed to offer a seamless shopping experience. The frontend of this project is built with React, utilizing React Router for navigation. The project is styled with Tailwind CSS, and includes authentication functionality using a custom `AuthProvider`.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Project Setup
+
+To run the project locally, follow the instructions below.
+
+### Prerequisites
+
+- Node.js (v14+)
+- npm or yarn
+
+### Installation and Run
+
+1. **Clone the repository:**
+
+   ```bash
+   git clone https://github.com/yourusername/urban-lifestyles-frontend.git
+
+2. cd ul-client
+
+3. npm install
+
+4. npm run dev
+
