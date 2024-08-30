@@ -19,7 +19,7 @@ const ProductDetails = () => {
                 </figure>
                 <div className="card-body">
                     <h2 className="text-2xl font-semibold">{product_name}</h2>
-                    <p className='font-bold'>{brand}</p>
+                    <p className='font-bold'>Brand: <span className="text-blue-600 font-normal">{brand}</span></p>
                     <p><b>Category:</b> {category}</p>
                     <p><b>Product Description:</b> {description}</p>
                     <hr />
